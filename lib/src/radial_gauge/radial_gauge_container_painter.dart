@@ -153,9 +153,10 @@ class RenderRadialGaugeContainer extends RenderBox {
   }
 
   int calculateNumOfDivisions(int steps, double start, double end) {
-    double range = end - start.toDouble();
-    int numOfDivisions = (range / steps).ceil();
-    return numOfDivisions;
+    // double range = end - start.toDouble();
+    // int numOfDivisions = (range / steps).ceil();
+    // return numOfDivisions;
+    return steps;
   }
 
   @override
@@ -182,12 +183,12 @@ class RenderRadialGaugeContainer extends RenderBox {
         getRadialGauge.track.trackStyle.primaryRulersHeight ?? 10;
     double arcLength = endAngle - startAngle; // length of the arc in radians
 
-    double numParts = calculateNumOfDivisions(
-      getRadialGauge.track.steps,
-      getRadialGauge.track.start,
-      getRadialGauge.track.end,
-    ).toDouble();
-
+    // double numParts = calculateNumOfDivisions(
+    //   getRadialGauge.track.steps,
+    //   getRadialGauge.track.start,
+    //   getRadialGauge.track.end,
+    // ).toDouble();
+    double numParts = getRadialGauge.track.steps.toDouble();
     // double radialOffset = getRadialGauge.valueBar!.first.radialOffset;
 
     double partAngle = arcLength / numParts; // angle of each part in radians
