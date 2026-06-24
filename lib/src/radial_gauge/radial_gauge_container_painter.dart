@@ -143,9 +143,19 @@ class RenderRadialGaugeContainer extends RenderBox {
         continue; // Skip drawing the last label
       }
 
+      Offset userLabelOffset = Offset(
+        (getRadialGauge.track.trackStyle.labelOffset ?? 0.0) * cos(angle),
+        (getRadialGauge.track.trackStyle.labelOffset ?? 0.0) * sin(angle),
+      );
+
       final Offset labelOffset = Offset(
-          (labelEndPoint.dx + center.dx) - textPainter.width / 2,
-          (labelEndPoint.dy + center.dy) - textPainter.height / 2);
+        (labelEndPoint.dx + center.dx) -
+            textPainter.width / 2 +
+            userLabelOffset.dx,
+        (labelEndPoint.dy + center.dy) -
+            textPainter.height / 2 +
+            userLabelOffset.dy,
+      );
       if (getRadialGauge.track.trackStyle.showLabel!) {
         textPainter.paint(canvas, labelOffset);
       }
